@@ -16,7 +16,7 @@ class PredictRequest():
 def main():
     return render_template('index.html')
 
-@app.route('/predict', methods=['POST'])
+@app.route('/tools', methods=['POST'])
 def predict():
     target_column = int(request.form['target_column'])
     file = request.files['file']
@@ -31,7 +31,7 @@ def predict():
     session['model_filename'] = model_filename  # Save the filenames to the user's session
     session['bounds_filename'] = bounds_filename
     
-    return render_template('predict.html')
+    return render_template('tools.html')
     
 @app.route('/results', methods=['POST'])
 def results():
