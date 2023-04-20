@@ -2,19 +2,31 @@
 <html> 
 <head> 
 	<title>CSV Predictor</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
 	<script defer src="{{url_for('static',filename='dist/js/livetable.js')}}"></script>
 	<script defer src="{{url_for('static',filename='dist/js/loading.js')}}"></script>
 </head> 
 <body class="bg-slate-800 text-stone-200">
 	<div class="flex items-center flex-col max-h-screen" id="pre_submit">
-		<form class="w-fit pt-3" action="/results" method="POST" enctype="multipart/form-data"> 
-			<div class="select-none w-fit px-1.5 py-0.5 m-1 bg-sky-800 hover:bg-sky-700 active:shadow-none active:mt-[5px] cursor-pointer border-b-2 border-slate-900 active:border-b-0 active:mb-[5px]">
-				<label for="csv_file">Select a file</label>
-				<input onchange="readCSVFile()" class="m-0 w-0 h-0 hidden" type="file" id="csv_file" name="file">
-			</div>
-			<input class="select-none px-1.5 py-0.5 m-1 bg-sky-800 hover:bg-sky-700 active:shadow-none active:mt-[5px] border-b-2 border-slate-900 active:border-b-0 active:mb-[5px]" onclick="showLoading()" type="submit" value="Submit">
-		</form> 
+		<div class="flex justify-around w-full sm:w-5/6 lg:w-1/2">
+			<form class="w-fit pt-3" action="/results" method="POST" enctype="multipart/form-data"> 
+				<div class="select-none w-fit px-1.5 py-0.5 m-1 bg-sky-800 hover:bg-sky-700 active:shadow-none active:mt-[5px] cursor-pointer border-b-2 border-slate-900 active:border-b-0 active:mb-[5px]">
+					<label for="csv_file">Select a file</label>
+					<input onchange="readCSVFile()" class="m-0 w-0 h-0 hidden" type="file" id="csv_file" name="file">
+				</div>
+				<input class="select-none px-1.5 py-0.5 m-1 bg-sky-800 hover:bg-sky-700 active:shadow-none active:mt-[5px] border-b-2 border-slate-900 active:border-b-0 active:mb-[5px]" onclick="showLoading()" type="submit" value="Submit">
+			</form> 
+			<form class="w-fit pt-3" action="/results" method="POST" enctype="multipart/form-data"> 
+				<div class="select-none w-fit px-1.5 py-0.5 m-1 bg-sky-800 hover:bg-sky-700 active:shadow-none active:mt-[5px] cursor-pointer border-b-2 border-slate-900 active:border-b-0 active:mb-[5px]">
+					<label for="csv_file">Select a file</label>
+					<input onchange="readCSVFile()" class="m-0 w-0 h-0 hidden" type="file" id="csv_file" name="file">
+				</div>
+				<input class="select-none px-1.5 py-0.5 m-1 bg-sky-800 hover:bg-sky-700 active:shadow-none active:mt-[5px] border-b-2 border-slate-900 active:border-b-0 active:mb-[5px]" onclick="showLoading()" type="submit" value="Submit">
+			</form> 
+		</div>
 		<div id="live_table_div" class="mt-5 bg-slate-900 text-amber-300 shadow-black shadow-inner hidden overflow-scroll max-w-full">
 			<table class="m-6 max-w-screen" id="live_table">
 
