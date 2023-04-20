@@ -4,17 +4,27 @@
 	<title>CSV Predictor</title>
     <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
 </head> 
-<body> 
-	<form action="/predict" method="POST" enctype="multipart/form-data"> 
-        <table>
-            {% for row in results %}
+<body class="bg-slate-800 text-stone-200">
+    <div id="live_table_div" class="bg-slate-900 text-amber-300 shadow-black shadow-inner overflow-scroll max-h-screen max-w-full">
+        <table class="m-6 max-w-screen">
+            <tr>
+                {% for n in numbers %}
+                <td style="color: #e7e5e4; padding-bottom: 0px;">{{n}}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for cell in results[0] %}
+                <td style="border-bottom: 2px solid #e7e5e4;">{{cell}}</td>
+                {% endfor %}
+            </tr>
+            {% for row in results[1:] %}
             <tr>
                 {% for cell in row %}
-                <td>{{cell}}</td>
+                <td style="padding: 4px 32px 4px 0px;border-bottom: 1px solid #e7e5e4;">{{cell}}</td>
                 {% endfor %}
             </tr>
             {% endfor %}
         </table>
-	</form> 
+	</div> 
 </body> 
 </html>

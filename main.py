@@ -48,7 +48,7 @@ def results():
 
     session['prediction_filename'] = prediction_filename
 
-    return render_template('results.html', results = results)
+    return render_template('results.html', results = results, numbers = range(len(results[0])))
 
 def run_daily_cleanup():
     file_age_days = 2
