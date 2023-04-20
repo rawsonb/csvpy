@@ -11,7 +11,7 @@ def make_prediction(csv_file, model_filename):
     model = load(model_path)
     
     # Load the input data into a pandas dataframe
-    df = pd.read_csv(io.StringIO(csv_file.decode('utf-8')))
+    df = pd.read_csv(io.StringIO(csv_file.decode('utf-8')), header=0)
     
     # Make predictions on the input data
     predictions = model.predict(df)
@@ -23,9 +23,9 @@ def make_prediction(csv_file, model_filename):
     timestamp = str(int(time.time()))
     rand_str = str(uuid.uuid4().hex)
     filename = f"predictions_{rand_str}_{timestamp}.csv"
-    df.to_csv(os.path.join('predictions', filename), index=False)
+    df.to_csv(os.path.join('predictions', filename))
 
-    results = df.values.tolist()
+    results = [df.columns.tolist()] + df.values.tolist()
   
     # Return the filename of the new predictions file
     return filename, results
