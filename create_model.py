@@ -34,11 +34,11 @@ def create_model(csv_file, target_column):
         "n_estimators": [100, 200, 300, 500]
     }
     search = RandomizedSearchCV(model, param_distributions=params, n_jobs=-1)
-    search.fit(df[non_target_cols], df[target])
+    search.fit(df[non_target_cols].values, df[target].values)
     
     # Fit the model with the best hyperparameters to the data
     model.set_params(**search.best_params_)
-    model.fit(df[non_target_cols], df[target])
+    model.fit(df[non_target_cols].values, df[target].values)
     
     # Create unique file names for the trained model and the bounds of the input data
     timestamp = str(int(time.time()))

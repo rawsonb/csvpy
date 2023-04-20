@@ -4,6 +4,7 @@ from flask import Flask, render_template, request, session
 from create_model import create_model
 from delete_old_files import delete_old_files
 from make_prediction import make_prediction
+from optimize_variables import optimize_variables
 
 app = Flask(__name__)
 app.secret_key = 'mysecretkey'
@@ -17,7 +18,7 @@ def main():
     return render_template('index.html')
 
 @app.route('/tools', methods=['POST'])
-def predict():
+def tools():
     target_column = int(request.form['target_column'])
     file = request.files['file']
     
@@ -33,8 +34,8 @@ def predict():
     
     return render_template('tools.html')
     
-@app.route('/results', methods=['POST'])
-def results():
+@app.route('/predict', methods=['POST'])
+def predict():
     file = request.files['file']
 
     if file.filename == '':
@@ -49,6 +50,18 @@ def results():
     session['prediction_filename'] = prediction_filename
 
     return render_template('results.html', results = results, numbers = range(len(results[0])))
+
+@app.route('/optimize', methods=['POST'])
+def optimize():
+    
+
+    model_filename = session['model_filename']
+
+    bounds_filename = session['bounds_filename']
+
+    optimal_variables, best = optimize_variables(bounds_filename, model_filename)
+
+    return render_template('results.html', results = optimal_variables, numbers = [best])
 
 def run_daily_cleanup():
     file_age_days = 2

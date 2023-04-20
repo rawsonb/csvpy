@@ -12,18 +12,16 @@
 <body class="bg-slate-800 text-stone-200">
 	<div class="flex items-center flex-col max-h-screen" id="pre_submit">
 		<div class="flex justify-around w-full sm:w-5/6 lg:w-1/2">
-			<form class="w-fit pt-3" action="/results" method="POST" enctype="multipart/form-data"> 
+			<form class="w-fit pt-3" action="/predict" method="POST" enctype="multipart/form-data">
+				<h1 class="font-semibold text-lg m-1 mb-2 pb-1 border-b-2 border-stone-200">Predict</h1>
 				<div class="select-none w-fit px-1.5 py-0.5 m-1 bg-sky-800 hover:bg-sky-700 active:shadow-none active:mt-[5px] cursor-pointer border-b-2 border-slate-900 active:border-b-0 active:mb-[5px]">
 					<label for="csv_file">Select a file</label>
 					<input onchange="readCSVFile()" class="m-0 w-0 h-0 hidden" type="file" id="csv_file" name="file">
 				</div>
 				<input class="select-none px-1.5 py-0.5 m-1 bg-sky-800 hover:bg-sky-700 active:shadow-none active:mt-[5px] border-b-2 border-slate-900 active:border-b-0 active:mb-[5px]" onclick="showLoading()" type="submit" value="Submit">
 			</form> 
-			<form class="w-fit pt-3" action="/results" method="POST" enctype="multipart/form-data"> 
-				<div class="select-none w-fit px-1.5 py-0.5 m-1 bg-sky-800 hover:bg-sky-700 active:shadow-none active:mt-[5px] cursor-pointer border-b-2 border-slate-900 active:border-b-0 active:mb-[5px]">
-					<label for="csv_file">Select a file</label>
-					<input onchange="readCSVFile()" class="m-0 w-0 h-0 hidden" type="file" id="csv_file" name="file">
-				</div>
+			<form class="w-fit pt-3" action="/optimize" method="POST" enctype="multipart/form-data"> 
+				<h1 class="font-semibold text-lg m-1 mb-2 pb-1 border-b-2 border-stone-200">Optimize</h1>
 				<input class="select-none px-1.5 py-0.5 m-1 bg-sky-800 hover:bg-sky-700 active:shadow-none active:mt-[5px] border-b-2 border-slate-900 active:border-b-0 active:mb-[5px]" onclick="showLoading()" type="submit" value="Submit">
 			</form> 
 		</div>
